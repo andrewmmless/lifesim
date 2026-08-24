@@ -69,6 +69,7 @@ public class Character {
 
     //card display
     private void displayCard(String player, int card) {
+
         if (card == 1) {
             System.out.println(player + " card is an Ace");
         } else {
@@ -78,6 +79,7 @@ public class Character {
 
     //start gas rob
     public void robGas(Scanner input, Random gen) {
+
         //Rolling Player Success
         int playerCheck = gen.nextInt(100) + 1;
         int moneyGained = gen.nextInt(1000, 5000) + 1;
@@ -93,6 +95,8 @@ public class Character {
             System.out.println("You failed to check the computer.");
         }
 
+        pause(1000);
+
         System.out.println("Would you like to attempt to rob the gas station?");
         pause(1000);
         System.out.println("Yes or no?");
@@ -100,35 +104,48 @@ public class Character {
         String choice = input.nextLine();
 
         if (choice.equalsIgnoreCase("yes")) {
+
             int gasPath1 = gen.nextInt(2) + 1;
 
             System.out.println("You successfully grab the money!");
             pause(2000);
 
             System.out.println("Oh shoot! There is a worker!!!");
+            pause(1000);
+
             System.out.println("Would you like to choose the left or right path");
 
             String choiceLR1 = input.nextLine();
 
             if (choiceLR1.equalsIgnoreCase("left")) {
+
                 int playerPath = gen.nextInt(2) + 1;
+
+                pause(1000);
 
                 if (gasPath1 == playerPath) {
                     System.out.println("You successfully made it out!");
+                    pause(1000);
                     addMoney(moneyGained);
                 } else {
                     System.out.println("You have not successfully made it out.");
+                    pause(1000);
                     subtractMoney(moneyLost);
                 }
 
             } else if (choiceLR1.equalsIgnoreCase("right")) {
+
                 int playerPath = gen.nextInt(2) + 1;
+
+                pause(1000);
 
                 if (gasPath1 == playerPath) {
                     System.out.println("You successfully made it out!");
+                    pause(1000);
                     addMoney(moneyGained);
                 } else {
                     System.out.println("You have not successfully made it out.");
+                    pause(1000);
                     subtractMoney(moneyLost);
                 }
             }
@@ -137,8 +154,10 @@ public class Character {
 
     //end gas rob
 
+
     //start bank rob
     public void robBank(Scanner input, Random gen) {
+
         //Rolling Player Success
         int playerCheck = gen.nextInt(100) + 1;
         int moneyGained = gen.nextInt(10000, 50000) + 1;
@@ -149,8 +168,12 @@ public class Character {
 
         //moneyCheck
         if (playerCheck <= 40) {
-            System.out.println("You found a bank note saying the vault has  " + moneyGained + " dollars!");
+            System.out.println("You found a bank note saying the vault has " + moneyGained + " dollars!");
+        } else {
+            System.out.println("You failed to find a bank note.");
         }
+
+        pause(1000);
 
         System.out.println("Would you like to attempt to rob the bank?");
         pause(1000);
@@ -159,14 +182,18 @@ public class Character {
         String choice = input.nextLine();
 
         if (choice.equalsIgnoreCase("yes")) {
+
             System.out.println("You successfully break into the vault!");
             pause(2000);
 
             System.out.println("You spot night patrol around the corner!!!");
+            pause(1000);
+
             System.out.println("Would you like to sprint left or right?");
 
             int gasPath1 = gen.nextInt(2) + 1;
             int gasPath2 = gen.nextInt(2) + 1;
+
             int playerPath1 = gen.nextInt(2) + 1;
             int playerPath2 = gen.nextInt(2) + 1;
 
@@ -174,53 +201,71 @@ public class Character {
 
             if (choiceLR1.equalsIgnoreCase("left")) {
 
+                pause(1000);
+
                 if (gasPath1 == playerPath1) {
+
                     System.out.println("You have made it through the first path... One more to go!");
-                    pause(500);
+                    pause(1000);
 
                     System.out.println("Would you like to sprint left or right?");
+
                     String choiceLR2 = input.nextLine();
 
                     if (choiceLR2.equalsIgnoreCase("left")
                             || choiceLR2.equalsIgnoreCase("right")) {
 
+                        pause(1000);
+
                         if (playerPath2 == gasPath2) {
                             System.out.println("You successfully made it out!");
+                            pause(1000);
                             addMoney(moneyGained);
                         } else {
                             System.out.println("You have not successfully made it out.");
+                            pause(1000);
                             subtractMoney(moneyLost);
                         }
                     }
 
                 } else {
                     System.out.println("You have not successfully made it out.");
+                    pause(1000);
                     subtractMoney(moneyLost);
                 }
 
             } else if (choiceLR1.equalsIgnoreCase("right")) {
 
+                pause(1000);
+
                 if (gasPath1 == playerPath1) {
+
                     System.out.println("You have made it through the first path... One more to go!");
-                    pause(500);
+                    pause(1000);
 
                     System.out.println("Would you like to sprint left or right?");
+
                     String choiceLR2 = input.nextLine();
 
                     if (choiceLR2.equalsIgnoreCase("left")
                             || choiceLR2.equalsIgnoreCase("right")) {
 
+                        pause(1000);
+
                         if (playerPath2 == gasPath2) {
                             System.out.println("You successfully made it out!");
+                            pause(1000);
                             addMoney(moneyGained);
                         } else {
                             System.out.println("You have not successfully made it out.");
+                            pause(1000);
                             subtractMoney(moneyLost);
                         }
                     }
 
                 } else {
                     System.out.println("You have not successfully made it out.");
+                    pause(1000);
                     subtractMoney(moneyLost);
                 }
             }
@@ -229,7 +274,9 @@ public class Character {
 
     //end bank rob
 
+
     //start casino
+
 
     //start flip a coin
     public void casinoCoin(Scanner input, Random gen) {
@@ -237,73 +284,119 @@ public class Character {
         //KICKED OUT CHECK
         if (getMoney() <= 0) {
             System.out.println("You have no money! The casino kicks you out.");
+            pause(1000);
             return;
         }
 
         System.out.println("You currently got " + getMoney() + " dollars!");
+        pause(700);
+
         System.out.println("How much would you like to wager or type 0 to know how the game works.");
 
         int wager = input.nextInt();
         String apple = input.nextLine();
 
+        //wager check
         if (wager < 0) {
             System.out.println("You can not wager a negative amount.");
+            pause(1000);
             return;
         }
 
         if (wager > getMoney()) {
             System.out.println("You can not wager more money than you have.");
+            pause(1000);
             return;
         }
 
+        //game info
         if (wager == 0) {
             System.out.println("You pick a coin heads or tails and everytime you get it right your wagered amount doubles. BUT if you get it wrong you lose your total amount.");
+            pause(1500);
             return;
         }
 
         int coinSide = gen.nextInt(2) + 1;
 
         System.out.println("Would you like to choose heads or tails?");
+        pause(700);
+
         String playerCoin = input.nextLine();
 
+        //heads
         if (playerCoin.equalsIgnoreCase("heads")) {
 
+            pause(700);
+
+            System.out.println("The coin is flipping...");
+            pause(1500);
+
             if (coinSide == 1) {
+
                 int moneyGained = 2 * wager;
+
+                System.out.println("The coin landed on heads!");
+                pause(700);
 
                 System.out.println("Good job! You correctly guessed you now have a profit totaling " + moneyGained + " dollars!");
 
                 addMoney(moneyGained);
 
             } else {
+
+                System.out.println("The coin landed on tails!");
+                pause(700);
+
                 System.out.println("Sorry you guessed incorrectly.");
                 subtractMoney(wager);
             }
 
-        } else if (playerCoin.equalsIgnoreCase("tails")) {
+        }
+
+        //tails
+        else if (playerCoin.equalsIgnoreCase("tails")) {
+
+            pause(700);
+
+            System.out.println("The coin is flipping...");
+            pause(1500);
 
             if (coinSide == 2) {
+
                 int moneyGained = 2 * wager;
+
+                System.out.println("The coin landed on tails!");
+                pause(700);
 
                 System.out.println("Good job! You correctly guessed you now have a profit totaling " + moneyGained + " dollars!");
 
                 addMoney(moneyGained);
 
             } else {
+
+                System.out.println("The coin landed on heads!");
+                pause(700);
+
                 System.out.println("Sorry you guessed incorrectly.");
                 subtractMoney(wager);
             }
 
         } else {
             System.out.println("That is not a valid choice.");
+            pause(1000);
         }
     }
 
+
     //blackjack
+
     public int dealerFirstCard(Random gen) {
+
         int casinoCard1 = drawCard(gen);
+
         return casinoCard1;
     }
+
 
     public int dealerSecondCard(Random gen, int casinoCard1) {
 
@@ -321,6 +414,7 @@ public class Character {
         int casinoCard2 = drawCard(gen);
 
         displayCard("The dealer's second", casinoCard2);
+        pause(1000);
 
         casinoTotal = addBlackjackCard(
                 casinoTotal,
@@ -329,13 +423,18 @@ public class Character {
         );
 
         System.out.println("The dealer's total is " + casinoTotal);
+        pause(1000);
 
         //dealer hit
         while (casinoTotal < 17) {
 
+            System.out.println("The dealer draws another card...");
+            pause(1000);
+
             int nextCard = drawCard(gen);
 
             displayCard("The dealer's next", nextCard);
+            pause(700);
 
             casinoTotal = addBlackjackCard(
                     casinoTotal,
@@ -344,10 +443,12 @@ public class Character {
             );
 
             System.out.println("The dealer's total is " + casinoTotal);
+            pause(700);
         }
 
         return casinoTotal;
     }
+
 
     public void blackjack(Scanner input, Random gen) {
 
@@ -357,7 +458,10 @@ public class Character {
 
             //KICKED OUT CHECK
             if (getMoney() <= 0) {
+
                 System.out.println("You have no money left! The casino kicks you out.");
+                pause(1500);
+
                 playingSession = false;
                 break;
             }
@@ -370,6 +474,8 @@ public class Character {
                 int[] aceCount = {0};
 
                 System.out.println("You currently got " + getMoney() + " dollars!");
+                pause(700);
+
                 System.out.println("How much would you like to wager or type 0 to know how the game works.");
 
                 int wager = input.nextInt();
@@ -377,24 +483,43 @@ public class Character {
 
                 //wager check
                 if (wager < 0) {
+
                     System.out.println("You can not wager a negative amount.");
+                    pause(1000);
+
                     continue;
                 }
 
                 if (wager > getMoney()) {
+
                     System.out.println("You can not wager more money than you have.");
+                    pause(1000);
+
                     continue;
                 }
 
+                //game info
                 if (wager == 0) {
+
                     System.out.println("In Blackjack, try to get closer to 21 than the dealer without going over.");
+                    pause(700);
+
                     System.out.println("Aces count as 11 when possible and 1 when counting them as 11 would make you bust.");
+                    pause(1200);
+
                     continue;
                 }
+
 
                 //dealer card
+                System.out.println("The dealer is dealing...");
+                pause(1000);
+
                 int card1 = dealerFirstCard(gen);
+
                 displayCard("The dealer's first", card1);
+                pause(1000);
+
 
                 //player first card
                 int pcard1 = dealerFirstCard(gen);
@@ -411,6 +536,9 @@ public class Character {
                     System.out.println("Your first card is " + pcard1);
                 }
 
+                pause(700);
+
+
                 //player second card
                 int pcard2 = dealerFirstCard(gen);
 
@@ -426,12 +554,20 @@ public class Character {
                     System.out.println("Your second card is " + pcard2);
                 }
 
+                pause(700);
+
                 System.out.println("Your total is " + ptotal);
+                pause(1000);
+
 
                 //blackjack
                 if (ptotal == 21) {
+
                     System.out.println("BLACKJACK!");
+                    pause(1500);
+
                     addMoney(wager);
+
                     playing = false;
                 }
 
@@ -449,6 +585,11 @@ public class Character {
                         //hit
                         if (choice.equalsIgnoreCase("hit")) {
 
+                            pause(700);
+
+                            System.out.println("You draw another card...");
+                            pause(1000);
+
                             int pcard3 = dealerFirstCard(gen);
 
                             if (pcard3 == 1) {
@@ -457,6 +598,8 @@ public class Character {
                                 System.out.println("Your next card is a " + pcard3);
                             }
 
+                            pause(700);
+
                             ptotal = addBlackjackCard(
                                     ptotal,
                                     pcard3,
@@ -464,6 +607,7 @@ public class Character {
                             );
 
                             System.out.println("Your total is " + ptotal);
+                            pause(700);
 
                             if (ptotal > 21) {
                                 bust2 = true;
@@ -472,75 +616,121 @@ public class Character {
 
                         //stand
                         else if (choice.equalsIgnoreCase("stand")) {
+
+                            pause(700);
+
+                            System.out.println("You stand with " + ptotal);
+                            pause(1000);
+
                             standing = true;
                         }
 
                         //invalid
                         else {
+
                             System.out.println("Invalid choice.");
+                            pause(700);
                         }
                     }
 
+
                     //player bust
                     if (bust2) {
+
                         System.out.println("Ouuuu you busted.");
+                        pause(1000);
+
                         System.out.println("Your card total is " + ptotal);
+                        pause(700);
+
                         System.out.println("You lost " + wager + " dollars.");
+                        pause(1000);
 
                         subtractMoney(wager);
+
                         playing = false;
                     }
+
 
                     //player stand
                     if (!bust2 && standing) {
 
                         System.out.println("Your card total is " + ptotal);
+                        pause(700);
+
                         System.out.println("The dealer reveals their second card...");
+                        pause(1500);
 
                         int cardTotal = dealerSecondCard(
                                 gen,
                                 card1
                         );
 
+                        pause(700);
+
                         System.out.println("The dealer finished with " + cardTotal);
+                        pause(1000);
+
 
                         //dealer bust
                         if (cardTotal > 21) {
+
                             System.out.println("The dealer busted! You win!");
+                            pause(1200);
+
                             addMoney(wager);
+
                             playing = false;
                         }
+
 
                         //player win
                         else if (ptotal > cardTotal) {
+
                             System.out.println("You win!");
+                            pause(1200);
+
                             addMoney(wager);
+
                             playing = false;
                         }
+
 
                         //player lose
                         else if (ptotal < cardTotal) {
+
                             System.out.println("You lose!");
+                            pause(1200);
+
                             subtractMoney(wager);
+
                             playing = false;
                         }
 
+
                         //draw
                         else {
+
                             System.out.println("You drew!");
+                            pause(1200);
+
                             playing = false;
                         }
                     }
                 }
 
+
                 //KICKED OUT CHECK
                 if (getMoney() <= 0) {
+
                     System.out.println("You have no money left! The casino kicks you out.");
+                    pause(1500);
 
                     playingSession = false;
                     playing = false;
                 }
             }
+
 
             //play again
             if (playingSession) {
@@ -550,23 +740,37 @@ public class Character {
                 while (asking) {
 
                     System.out.println("You currently got " + getMoney() + " dollars!");
+                    pause(700);
+
                     System.out.println("Would you like to play again? (Yes/No)");
 
                     String playAgain = input.nextLine();
 
+                    //yes
                     if (playAgain.equalsIgnoreCase("yes")) {
-                        asking = false;
 
-                    } else if (playAgain.equalsIgnoreCase("no")) {
+                        pause(700);
+
+                        asking = false;
+                    }
+
+                    //no
+                    else if (playAgain.equalsIgnoreCase("no")) {
+
+                        pause(700);
+
                         asking = false;
                         playingSession = false;
+                    }
 
-                    } else {
+                    //invalid
+                    else {
+
                         System.out.println("Invalid choice.");
+                        pause(700);
                     }
                 }
             }
         }
     }
 }
-
