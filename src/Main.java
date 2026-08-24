@@ -1,58 +1,101 @@
 import java.util.*;
-public class main {
-
+public class Main {
 
     public static void main(String[] args) {
-    }
+        //util creation
+        Scanner input = new Scanner(System.in);
+        Random gen = new Random();
+        boolean playing = true;
 
-//PAUSE
+        //info creation
+        Character player1 = new Character(0);
 
-    void pause(int milliseconds) {
-        try {
-            Thread.sleep(milliseconds);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
 
-//bank rob
+        //welcome
+        System.out.println("Welcome to Andrew's lifesim project!");
+        System.out.println("I started this project august 23 and it is currently in patch 2.2.0");
+        System.out.println("");
+        System.out.println("You currently have " + player1.getMoney() + " dollars");
 
-    public static void robBank(Scanner input, Random gen, int money, int moneyGained) {
-        //Rolling Player Success
-        boolean failed = false;
-        int playerCheck = gen.nextInt(100) + 1;
-        moneyGained = gen.nextInt(5000, 50000) + 1;
+        while (playing = true) {
+            //choice begins
+            boolean whileCasino = false;
+            System.out.println("What would you like to do now?");
+            System.out.println("Rob");
+            System.out.println("Casino");
+            String startCommand = input.nextLine();
 
-        System.out.println("You have Successfully made it inside the bank!");
-        pause(1000);
+            if (startCommand.equalsIgnoreCase("add")) {
+                player1.cheatMoney(10000);
+                System.out.println("Total money is " + player1.getMoney());
+            }
 
-        //moneyCheck
-        if (playerCheck <= 40) {
-            System.out.println("You secretly checked the computer and saw you could rob " + moneyGained + " dollars!");
-        } else if (playerCheck >= 60) {
-            System.out.println("You failed to check the computer.");
-        }
 
-        System.out.println("Would you like to attempt to rob the bank?");
-        pause(5000);
-        System.out.println("Yes or no?");
-        String choice = input.nextLine();
-        if (choice.equalsIgnoreCase("yes")) {
-            int bankPath1 = gen.nextInt(2) + 1;
-            int bankPath2 = gen.nextInt(2) + 1;
-            System.out.println("You successfully grab the money!");
-            pause(2000);
-            System.out.println("Oh shoot! There is a worker!!!");
-            System.out.println("Would you like to choose the left or right path");
-            String choiceLR1 = input.nextLine();
-            if (choiceLR1.equalsIgnoreCase("left")) {
-                int playerPath = gen.nextInt(2) + 1;
-                if (bankPath1 == playerPath) {
-                    System.out.println("You successfully made it through the first route!");
+            //rob
+            else if (startCommand.equalsIgnoreCase("Rob") && player1.getMoney() <= 10000) {
+                System.out.println("What would you like to rob?");
+                pause(1000);
+                System.out.println("1. Gas Station");
+                System.out.println("2. Bank");
+
+                String robCommand = input.nextLine();
+
+
+                //gas rob
+                if (robCommand.equalsIgnoreCase("Gas Station")) {
+                    player1.robGas(input, gen);
+                    System.out.println("You now have " + player1.getMoney() + " dollars");
                 }
+
+                //bank rob
+                if (robCommand.equalsIgnoreCase("Bank")) {
+                    player1.robBank(input, gen);
+                    System.out.println("You now have " + player1.getMoney() + " dollars");
+                }
+            }
+            if (startCommand.equalsIgnoreCase("Rob") && player1.getMoney() > 10000) {
+                System.out.println("Sorry ya go too much money hit the casino");
+            }
+            //end rob
+
+            //start casino
+
+            else if (startCommand.equalsIgnoreCase("Casino")) {
+                while (whileCasino == false) {
+                    //casino choices
+                    System.out.println("Which game would you like to play?");
+                    pause(1000);
+                    System.out.println("1. Coin Flip");
+                    System.out.println("2. Blackjack");
+                    System.out.println("3. Leave");
+                    String choiceCommand = input.nextLine();
+
+                    //coin flip
+                    if (choiceCommand.equalsIgnoreCase("Coin Flip")) {
+                        player1.casinoCoin(input, gen);
+                    } else if (choiceCommand.equalsIgnoreCase("Blackjack")) {
+                        player1.blackjack(input, gen);
+                    } else if (choiceCommand.equalsIgnoreCase("Leave")) {
+                        System.out.println("Sad to see you go! Come Again soon!");
+                        whileCasino = true;
+                    }
+                    else {
+                        System.out.println("Sorry, that is not a valid choice.");
+                    }
+                }
+
+                //end casino
             }
         }
     }
-}
+//PAUSE
 
 
+        static void pause (int milliseconds){
+            try {
+                Thread.sleep(milliseconds);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
