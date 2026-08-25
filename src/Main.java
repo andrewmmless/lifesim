@@ -122,7 +122,10 @@ public class Main {
                     System.out.println("2. Blackjack");
                     pause(400);
 
-                    System.out.println("3. Leave");
+                    System.out.println("3. Horse Racing");
+                    pause(400);
+
+                    System.out.println("4. Leave");
 
                     String choiceCommand = input.nextLine();
 
@@ -150,6 +153,13 @@ public class Main {
                         pause(1000);
                     }
 
+                    //horse racing
+                    else if (choiceCommand.equalsIgnoreCase("Horse Racing")) {
+                        pause(700);
+                        player1.horseRacing(input, gen);
+                        pause(1000);
+                    }
+
                     //leave
                     else if (choiceCommand.equalsIgnoreCase("Leave")) {
                         pause(500);
@@ -166,6 +176,8 @@ public class Main {
                         pause(1000);
                     }
                 }
+
+
 
                 //end casino
             }

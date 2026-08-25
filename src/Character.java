@@ -718,19 +718,17 @@ public class Character {
                         }
                     }
                 }
-
-
-                //KICKED OUT CHECK
-                if (getMoney() <= 0) {
-
-                    System.out.println("You have no money left! The casino kicks you out.");
-                    pause(1500);
-
-                    playingSession = false;
-                    playing = false;
-                }
             }
 
+
+            //KICKED OUT CHECK
+            if (getMoney() <= 0) {
+
+                System.out.println("You have no money left! The casino kicks you out.");
+                pause(1500);
+
+                playingSession = false;
+            }
 
             //play again
             if (playingSession) {
@@ -773,4 +771,70 @@ public class Character {
             }
         }
     }
+
+    //end blackjack
+
+
+    //start horse racing
+    public void horseRacing(Scanner input, Random gen) {
+
+        int horseWinner = gen.nextInt(6);
+        double[] horseMoney = new double[6];
+
+        System.out.println("Welcome to the race track!");
+        pause(350);
+        System.out.println("The horses betting odds today are...");
+        pause(1000);
+
+        for (int i = 0; i < 6; i++) {
+            double rawMultiplier = 1 + gen.nextDouble() * 4;       // 1.0 - 5.0
+            horseMoney[i] = Math.round(rawMultiplier * 100) / 100.0; // round to 2 decimals
+            System.out.println("Horse " + i + " multiplier is " + horseMoney[i]);
+            pause(300);
+        }
+
+        int selectedHorse = -1;
+        while (selectedHorse < 0 || selectedHorse > 5) {
+            System.out.println("Which number horse would you like to bet on? (0-5)");
+            selectedHorse = input.nextInt();
+            if (selectedHorse < 0 || selectedHorse > 5) {
+                System.out.println("Invalid selection. Please choose a horse between 0 and 5.");
+            }
+        }
+
+        System.out.println("How much would you like to bet?");
+        int wager = input.nextInt();
+        double payout = wager * horseMoney[selectedHorse];
+        pause(350);
+        System.out.println("You bet " + wager + " on horse " + selectedHorse + ".");
+        System.out.println("Your total payout would be " + payout + " dollars.");
+
+        pause(500);
+        System.out.println("The horses are lining up at the gate...");
+        pause(800);
+        System.out.println("And they're off!");
+        pause(600);
+        System.out.println("It's a tight pack coming out of the first turn...");
+        pause(700);
+        System.out.println("Horse " + gen.nextInt(6) + " is pushing ahead!");
+        pause(700);
+        System.out.println("But horse " + gen.nextInt(6) + " is closing in fast...");
+        pause(800);
+        System.out.println("Coming down the final stretch...");
+        pause(900);
+        System.out.println("And the winner is... Horse " + horseWinner + "!");
+        pause(500);
+
+        if (selectedHorse == horseWinner) {
+            addMoney((int) payout);
+            System.out.println("You won " + payout + " dollars.");
+            System.out.println("You have " + getMoney() + " dollars.");
+        } else {
+            subtractMoney(wager);
+            System.out.println("You lost " + wager + " dollars.");
+            System.out.println("You have " + getMoney() + " dollars.");
+        }
+    }
+
+    //end horse racing
 }
