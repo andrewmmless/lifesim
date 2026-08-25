@@ -7,12 +7,21 @@ public class Main {
         Random gen = new Random();
         boolean playing = true;
 
+        //create
+        Rob rob = new Rob();
+        CasinoGames casinoGames = new CasinoGames();
+
+
+
         //info creation
-        Character player1 = new Character(0);
+        System.out.println("What's your name?");
+        String playerName = input.nextLine();
+
+        Character player1 = new Character(playerName, 0);
 
 
         //welcome
-        System.out.println("Welcome to Andrew's lifesim project!");
+        System.out.println("Welcome " + playerName + " to Andrew's lifesim project!");
         pause(1000);
 
         System.out.println("I started this project august 23 and it is currently in patch 2.2.0");
@@ -69,7 +78,7 @@ public class Main {
                     System.out.println("You chose the gas station...");
                     pause(1000);
 
-                    player1.robGas(input, gen);
+                    rob.robGas(player1, input, gen);
 
                     pause(1000);
 
@@ -84,7 +93,7 @@ public class Main {
                     System.out.println("You chose the bank...");
                     pause(1500);
 
-                    player1.robBank(input, gen);
+                    rob.robBank(player1, input, gen);
 
                     pause(1000);
 
@@ -136,7 +145,7 @@ public class Main {
                         System.out.println("You walk over to the coin flip table...");
                         pause(1000);
 
-                        player1.casinoCoin(input, gen);
+                        casinoGames.casinoCoin(player1, input, gen);
 
                         pause(1000);
                     }
@@ -148,7 +157,7 @@ public class Main {
                         System.out.println("You sit down at the blackjack table...");
                         pause(1200);
 
-                        player1.blackjack(input, gen);
+                        casinoGames.blackjack(player1, input, gen);
 
                         pause(1000);
                     }
@@ -156,7 +165,7 @@ public class Main {
                     //horse racing
                     else if (choiceCommand.equalsIgnoreCase("Horse Racing")) {
                         pause(700);
-                        player1.horseRacing(input, gen);
+                        casinoGames.horseRacing(player1, input, gen);
                         pause(1000);
                     }
 
